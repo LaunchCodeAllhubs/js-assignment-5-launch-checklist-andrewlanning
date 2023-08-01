@@ -7,18 +7,9 @@ window.addEventListener("load", function() {
         const copilot = document.querySelector("input[name='copilotName']").value;
         const fuelLevel = document.querySelector("input[name='fuelLevel']").value;
         const cargoLevel = document.querySelector("input[name='cargoMass']").value;
+        const list = document.getElementById("faultyItems");
 
-        if (!pilot || !copilot || !fuelLevel || !cargoLevel) { // Add an alert to notify the user that all fields are required.
-            window.alert("All fields are required!");
-            return;
-        }
-
-        if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
-            window.alert("Make sure to enter valid information for each field!")
-            return;
-        }
-
-        formSubmission(document, pilot, copilot, fuelLevel, cargoLevel);
+        formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
    })
 
     let listedPlanets;
