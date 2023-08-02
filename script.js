@@ -1,5 +1,5 @@
 window.addEventListener("load", function() {
-    let form = document.querySelector("[data-testid='testForm']");
+    let form = document.getElementById("launchForm");
     form.addEventListener("submit", function(event) {
         event.preventDefault(); // Requirement 1
 
@@ -8,6 +8,8 @@ window.addEventListener("load", function() {
         const fuelLevel = document.querySelector("input[name='fuelLevel']").value;
         const cargoLevel = document.querySelector("input[name='cargoMass']").value;
         const list = document.getElementById("faultyItems");
+
+        list.style.visibility = "hidden";
 
         formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
    })
