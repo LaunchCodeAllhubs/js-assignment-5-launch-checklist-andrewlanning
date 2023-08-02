@@ -40,16 +40,23 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     copilotStatus.textContent= `Co-pilot ${copilot} is ready for launch`
 
     if (!pilot || !copilot || !fuelLevel || !cargoLevel) { // Add an alert to notify the user that all fields are required.
-        window.alert("All fields are required!");
+        alert("All fields are required!");
         return;
     }
 
     if (validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
-        window.alert("Make sure to enter valid information for each field!")
+        alert("Make sure to enter valid information for each field!")
         return;
     }
 
-    if (Number(fuelLevel) < 10000) { // If the user submits a fuel level that is too low (less than 10,000 liters)
+    if (Number(fuelLevel) < 10000 && Number(cargoLevel) > 10000) {
+        list.style.visibility = "visible"; // change faultyItems to visible
+        //faultyItems.style.visibility = "visible"; // change faultyItems to visible
+        fuelStatus.textContent = "Not enough fuel for the journey."; // with an updated status stating that there is not enough fuel for the journey.
+        cargoStatus.textContent = "Cargo mass too heavy for launch"; // with an updated cargo status stating that there is too much mass for the shuttle to take off.
+        launchStatus.textContent = "Shuttle Not Ready for Launch"; // The text of the h2 element, launchStatus, should also change to "Shuttle not ready for launch"
+        launchStatus.style.color = "rgb(199, 37, 78)"; // The color should change to a particular shade of red, #37254E.
+    } else if (Number(fuelLevel) < 10000) { // If the user submits a fuel level that is too low (less than 10,000 liters)
         list.style.visibility = "visible"; // change faultyItems to visible
         //faultyItems.style.visibility = "visible"; // change faultyItems to visible
         fuelStatus.textContent = "Not enough fuel for the journey."; // with an updated status stating that there is not enough fuel for the journey.
@@ -60,7 +67,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         //faultyItems.style.visibility = "visible"; // change faultyItems to visible
         cargoStatus.textContent = "Cargo mass too heavy for launch"; // with an updated cargo status stating that there is too much mass for the shuttle to take off.
         launchStatus.textContent = "Shuttle Not Ready for Launch"; // The text of launchStatus should also change to "Shuttle not ready for launch"
-        launchStatus.style.color = " rgb(199, 37, 78)"; // The color should change to a particular shade of red, #37254E.
+        launchStatus.style.color = "rgb(199, 37, 78)"; // The color should change to a particular shade of red, #37254E.
     } else {
         list.style.visibility = "visible";
         //faultyItems.style.visibility = "visible"; // change faultyItems to visible
